@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="description" content="Copy your public IP" />
+    <meta charset="utf-8" />
+    <title>copi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Marianne Feng" />
+    <style>
+      #ip-wrapper {
+        width: 30%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      #copy-icon {
+        max-height: 18px;
+        cursor: pointer;
+      }
+      #ip {
+        font-family: monospace;
+      }
+      .disabled {
+        opacity: 0.5;
+        cursor: not-allowed !important;
+      }
+    </style>
+  </head>
+
+  <body style="margin-top: 50px">
+    <div id="ip-wrapper">
+      <div>Your public IP is: <span id="ip"></span></div>
+      <div>
+        <span id="success-text">Copied!</span>
+        <img
+          id="copy-icon"
+          src="copy.svg"
+          alt="Copy"
+          class="disabled"
+          onclick="copyToClipboard()"
+        />
+      </div>
+    </div>
+    <div id="error-text" style="display: none; text-align: center">
+      Error fetching IP address
+    </div>
+
+    <script>
+      const ip = document.getElementById("ip");
+      const ipWrapper = document.getElementById("ip-wrapper");
+
+      async function copyToClipboard() {
+        await navigator.clipboard.writeText(ip.innerText);
+        const copyIcon = document.getElementById("copy-icon");
+        copyIcon.style.display = "none";
+
+        const successText = document.getElementById("success-text");
+        successText.style.display = "block";
+        setTimeout(() => {
+          copyIcon.style.display = "block";
+          successText.style.display = "none";
+        }, 2000);
+      }
+
+      fetch("https://api.ipify.org?format=json")
+        .then((resp) => resp.json())
+        .then(async (data) => {
+          ip.innerHTML = data.ip;
+          const copyIcon = document.getElementById("copy-icon");
+          copyIcon.classList.remove("disabled");
+
+          await copyToClipboard();
+        })
+        .catch((error) => {
+          console.error("Error fetching IP:", error);
+          const errorText = document.getElementById("error-text");
+          ipWrapper.style.display = "none";
+          errorText.style.display = "block";
+        });
+    </script>
+  </body>
+</html>

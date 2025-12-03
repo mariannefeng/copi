@@ -75,6 +75,8 @@
         .catch((error) => {
           console.error("Error fetching IP:", error);
           const errorText = document.getElementById("error-text");
+
+          errorText.innerText = error.message;
           ipWrapper.style.display = "none";
           errorText.style.display = "block";
         });

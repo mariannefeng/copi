@@ -1,7 +1,9 @@
-- Make mobile work? (debatable if important)
+- Copy on load doesn't work on mobile (display message if fail to copy on load?)
+- Moile formatting
 
 ### Done
 
+- Make mobile work? (debatable if important)
 - Get custom domain
 - Deploy to vercel
 - 'Copied!' text replaces the image when IP address is successfully copied

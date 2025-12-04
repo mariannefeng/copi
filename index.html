@@ -8,11 +8,11 @@
     <meta name="author" content="Marianne Feng" />
     <style>
       #ip-wrapper {
-        width: 30%;
         margin: 0 auto;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 20px;
       }
       #copy-icon {
         max-height: 18px;
@@ -28,13 +28,16 @@
       #success-text {
         display: none;
       }
+      #copy-wrapper {
+        min-width: 60px;
+      }
     </style>
   </head>
 
   <body style="margin-top: 50px">
     <div id="ip-wrapper">
       <div>Your public IP is: <span id="ip"></span></div>
-      <div>
+      <div id="copy-wrapper">
         <span id="success-text">Copied!</span>
         <img
           id="copy-icon"
@@ -81,9 +84,6 @@
             await copyToClipboard();
           } catch (error) {
             console.log("Error copying to clipboard:", error);
-
-            errorText.innerText = error.message;
-            errorText.style.display = "block";
           }
         })
         .catch((error) => {

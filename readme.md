@@ -1,8 +1,8 @@
 - Copy on load doesn't work on mobile (display message if fail to copy on load?)
-- Moile formatting
 
 ### Done
 
+- Moile formatting
 - Make mobile work? (debatable if important)
 - Get custom domain
 - Deploy to vercel

@@ -28,21 +28,10 @@
       #success-text {
         display: none;
       }
-      #copy-wrapper {
-        min-width: 60px;
-      }
     </style>
   </head>
 
-  <body
-    style="
-      margin-top: 15%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    "
-  >
+  <body style="margin-top: 10%">
     <div id="ip-wrapper">
       <div>Your public IP is: <span id="ip"></span></div>
       <div id="copy-wrapper">
@@ -58,13 +47,6 @@
     </div>
     <div id="error-text" style="display: none; text-align: center">
       Error fetching IP address
-    </div>
-
-    <div style="margin-bottom: 10%; text-align: center">
-      <img
-        src="https://hitscounter.dev/api/hit?url=copy-ip.com&label=clicks%20saved%20today/clicks%20saved%20total&icon=person&color=%230d6efd&message=&style=flat&tz=US%2FEastern"
-        alt="Visitor counter"
-      />
     </div>
     <script>
       const ip = document.getElementById("ip");

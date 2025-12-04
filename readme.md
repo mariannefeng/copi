@@ -1,4 +1,4 @@
-- Copy on load doesn't work on mobile (display message if fail to copy on load?)
+- Observability?
 
 ### Done
 

@@ -1,8 +1,9 @@
-- Observability?
+- Improve accessibility (speedpage insights says Document does not have a main landmark)
 
 ### Done
 
-- Moile formatting
+- Add PostHog
+- Mobile formatting
 - Make mobile work? (debatable if important)
 - Get custom domain
 - Deploy to vercel

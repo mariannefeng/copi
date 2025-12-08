@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 100vh">
+<html lang="en">
   <head>
     <meta name="description" content="Copy your public IP" />
     <meta charset="utf-8" />
@@ -111,8 +111,7 @@
       Error fetching IP address
     </div>
     <script>
-      // click anywhere to copy
-      window.addEventListener("click", function () {
+      document.addEventListener("click", function () {
         copyToClipboard();
       });
 

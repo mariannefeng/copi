@@ -1,4 +1,6 @@
+- Update site title to be more descriptive (it shows up on SEO + bookmarks)
 - Improve accessibility (speedpage insights says Document does not have a main landmark)
+- Do other speedpage insights recommendations
 
 ### Done
 

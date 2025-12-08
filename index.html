@@ -3,9 +3,13 @@
   <head>
     <meta name="description" content="Copy your public IP" />
     <meta charset="utf-8" />
-    <title>copi</title>
+    <title>Copy Public IP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Marianne Feng" />
+    <meta
+      name="description"
+      content="Click anywhere on the page to copy your public IP. If you've given the site clipboard permissions, your public IP will be copied on load."
+    />
     <meta
       name="google-site-verification"
       content="03OWbYh5MYLUvEkZdDAaji2995P-7Lz58Aa9Pae0Fcc"
@@ -16,11 +20,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 20px;
       }
-      #copy-icon {
-        max-height: 18px;
-        cursor: pointer;
+      #success-text {
+        padding-left: 10px;
       }
       #ip {
         font-family: monospace;
@@ -31,6 +33,13 @@
       }
       #success-text {
         display: none;
+        color: green;
+        font-weight: bold;
+      }
+      #copy-hint {
+        text-align: center;
+        margin-top: 10px;
+        color: dimgrey;
       }
     </style>
     <script>
@@ -95,19 +104,18 @@
       <div>Your public IP is: <span id="ip"></span></div>
       <div id="copy-wrapper">
         <span id="success-text">Copied!</span>
-        <img
-          id="copy-icon"
-          src="copy.svg"
-          alt="Copy"
-          class="disabled"
-          onclick="copyToClipboard()"
-        />
       </div>
     </div>
+    <div id="copy-hint">click anywhere to copy to clipboard</div>
     <div id="error-text" style="display: none; text-align: center">
       Error fetching IP address
     </div>
     <script>
+      // click anywhere to copy
+      window.addEventListener("click", function () {
+        copyToClipboard();
+      });
+
       const ip = document.getElementById("ip");
       const ipWrapper = document.getElementById("ip-wrapper");
       const errorText = document.getElementById("error-text");
@@ -117,13 +125,9 @@
           new ClipboardItem({ "text/plain": ip.innerText }),
         ]);
 
-        const copyIcon = document.getElementById("copy-icon");
-        copyIcon.style.display = "none";
-
         const successText = document.getElementById("success-text");
         successText.style.display = "block";
         setTimeout(() => {
-          copyIcon.style.display = "block";
           successText.style.display = "none";
         }, 2000);
       }
@@ -132,8 +136,6 @@
         .then((resp) => resp.json())
         .then(async (data) => {
           ip.innerHTML = data.ip;
-          const copyIcon = document.getElementById("copy-icon");
-          copyIcon.classList.remove("disabled");
 
           try {
             await copyToClipboard();
